@@ -5,9 +5,11 @@ from settings import tile_size
 
 class Level:
     def __init__(self, level_data, surface):
+        # level setup
         self.display_surface = surface
-        self.level_data = level_data
         self.setup_level(level_data)
+
+        self.world_shift = 0
 
     def setup_level(self, layout):
         self.tiles = pygame.sprite.Group()
@@ -20,4 +22,5 @@ class Level:
                     self.tiles.add(tile)
 
     def run(self):
-        pass
+        self.tiles.update(0)
+        self.tiles.draw(self.display_surface)
